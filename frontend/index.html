@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Image Detector</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="noise"></div>
+
+    <header>
+        <div class="logo">AI<span>Detect</span></div>
+        <p class="tagline">Real or Generated? Let the machine decide.</p>
+    </header>
+
+    <main>
+        <section class="upload-section">
+
+            <!-- Drop Zone -->
+            <div class="drop-zone" id="dropZone">
+                <div class="drop-zone__inner">
+                    <div class="drop-zone__icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                            <path d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5"/>
+                        </svg>
+                    </div>
+                    <p class="drop-zone__text">Drag & drop your image here</p>
+                    <p class="drop-zone__sub">or</p>
+                    <label for="fileInput" class="btn-upload">Browse File</label>
+                    <input type="file" id="fileInput" accept="image/*" hidden>
+                    <p class="drop-zone__formats">Supports JPG, PNG, WEBP</p>
+                </div>
+            </div>
+
+            <!-- Image Preview -->
+            <div class="preview-container" id="previewContainer">
+                <img id="previewImage" src="" alt="Preview">
+                <button class="btn-clear" id="removeBtn">✕ Clear</button>
+            </div>
+
+        </section>
+
+        <!-- Analyze Button -->
+        <div class="action-area">
+            <button class="btn-analyze" id="analyzeBtn" disabled>
+                <span class="btn-text">Analyze Image</span>
+                <span class="btn-loader"></span>
+            </button>
+        </div>
+
+        <!-- Result Section -->
+        <section class="result-section" id="resultSection">
+
+            <!-- Loading State -->
+            <div class="loading-state" id="loadingState">
+                <div class="loading-spinner"></div>
+                <p>Analyzing image...</p>
+            </div>
+
+            <!-- Result Card -->
+            <div class="result-card" id="resultCard">
+                <div class="result-badge" id="resultBadge"></div>
+                <div class="result-label" id="resultLabel"></div>
+                <p class="result-description" id="resultDescription"></p>
+                <div class="confidence-wrap">
+                    <span class="confidence-value" id="confidenceValue"></span>
+                    <div class="confidence-bar">
+                        <div class="confidence-fill" id="confidenceFill"></div>
+                    </div>
+                </div>
+                <button class="btn-try-again" id="tryAgainBtn">Try Another Image</button>
+            </div>
+
+            <!-- Error Card -->
+            <div class="error-card" id="errorCard">
+                <p class="error-message" id="errorMessage"></p>
+                <button class="btn-try-again" id="errorRetryBtn">Try Again</button>
+            </div>
+
+        </section>
+
+    </main>
+
+    <footer>
+        <p>Built with Python · Flask · Docker · AWS</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

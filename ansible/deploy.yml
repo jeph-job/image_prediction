@@ -1,0 +1,76 @@
+---
+- name: Deploy Docker containers on EC2 instances
+  hosts: all
+  become: yes
+
+  vars:
+    docker_packages:
+      - docker
+
+  tasks:
+    - name: Refresh yum package cache (Amazon Linux)
+      yum:
+        update_cache: yes
+      when: ansible_os_family == "RedHat"
+
+    - name: Install Docker
+      yum:
+        name: docker
+        state: present
+
+    - name: Start and enable Docker service
+      service:
+        name: docker
+        state: started
+        enabled: yes
+
+    - name: Add ec2-user to docker group
+      user:
+        name: ec2-user
+        groups: docker
+        append: yes
+
+    - name: Install pip (for docker module dependency if needed)
+      yum:
+        name: python3-pip
+        state: present
+
+    - name: Install Docker Python SDK
+      pip:
+        name: docker
+        extra_args: --ignore-installed
+
+    - name: Pull Docker image for frontend server
+      docker_image:
+        name: jephjob/my-frontend
+        source: pull
+      when: inventory_hostname == "frontend-server"
+
+    - name: Pull Docker image for backend server
+      docker_image:
+        name: jephjob/ai-image-detector
+        source: pull
+      when: inventory_hostname == "backend-server"
+
+    - name: Run frontend container
+      docker_container:
+        name: frontend-container
+        image: jephjob/my-frontend
+        state: started
+        restart_policy: always
+        recreate: yes
+        ports:
+          - "80:80"
+        env:
+          BACKEND_URL: "{{ backend_url }}"
+      when: inventory_hostname == "frontend-server"
+
+    - name: Run backend container
+      docker_container:
+        name: backend-container
+        image: jephjob/ai-image-detector
+        state: started
+        restart_policy: always
+        ports:
+          - "5000:5000"
+      when: inventory_hostname == "backend-server"
