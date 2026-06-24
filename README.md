@@ -23,9 +23,16 @@ from the inventory.ini and variables.tf files respectively.
 ---
 > 📸 ### Screenshots of the manual deployment...
 > ![Screenshot of my AWS console page, showing all the deployed ec2 instances](screenshots/console_m1.png)
+<p><em>Manually deployed ec2, AWS console</em></p>
+
 > ![Screenshot of the frontend showing the working web app on a laptop](screenshots/Screenshot_m.png)
+<p><em>Frontend displayed on a laptop, manual deployment</em></p>
+
 > ![Screenshot of the frontend showing the results of the image analysis on a laptop](screenshots/Screenshot_m_result.png)
-> ![Screenshot of the frontend showing the results of the image analysis on a phone](screenshots/Screenshot_m1.png)
+<p><em>Analysis result displayed on a laptop, manual deployment</em></p>
+
+> ![Screenshot of the frontend showing the results of the image analysis on a phone](screenshots/Screenshot_m1.jpg)
+<p><em>Frontend displayed on a mobile phone, manual deployment</em></p>
 ---
 
 
@@ -68,6 +75,7 @@ The model used is [SMOGY AI Image Detector](https://huggingface.co/Smogy/SMOGY-A
 
 > 📸 ### Diagram of the VPC architecture I designed
 > ![VPC architecture](screenshots/vpc_design.jpg)
+<p><em>VPC architecture</em></p>
 
 The application runs on two separate EC2 instances inside a custom AWS VPC:
 
@@ -342,9 +350,16 @@ Phase 2 replaces every manual step with code:
 ---
 > 📸 ### Screenshots of the IaC deployment...
 > ![Screenshot of my AWS console page, showing all ec2 instances](screenshots/console_tf2.png)
+<p><em>AWS console, deployed using IaC</em></p>
+
 > ![Screenshot of my AWS console page, showing all ec2 instances security group](screenshots/console_tf1.png)
+<p><em>IaC deployment security group</em></p>
+
 > ![Screenshot of the frontend showing the results of the image analysis on a laptop](screenshots/Screenshot_tf_result.png)
+<p><em>IaC deployment working fine on a laptop</em></p>
+
 > ![Screenshot of the frontend showing the results of the image analysis on a phone](screenshots/Screenshot_tf3.jpg)
+<p><em>IaC deployment working fine on a mobile phone</em></p>
 ---
 
 ---
